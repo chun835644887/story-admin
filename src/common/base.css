@@ -1,0 +1,6 @@
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.fl{float: left;}
+.fr{float: right;}
+/* 宽度 */
+.w45{width: 45%;}
+.w55{width: 55%;}
