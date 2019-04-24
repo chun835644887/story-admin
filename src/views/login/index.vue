@@ -2,7 +2,10 @@
 	<div style="height: 100%;padding: 0 2rem;">
 		<div id="login-container">
 			<div class="input-wrap">
-				<div class="header">用户登陆</div>
+				<div class="header">
+					<span class="active">登陆</span>
+					<span>注册</span>
+				</div>
 				<div class="input-item">
 					<!-- <input type="text" name="account" placeholder="请输入账号" /> -->
 					<x-input type="text" title="账号：" placeholder="请输入账号" v-model="account"></x-input>
@@ -22,7 +25,6 @@
 				<div class="input-item">
 					<x-button :gradients="['#1D62F0', '#19D5FD']" @click.native="submit">登陆</x-button>
 				</div>
-				<!-- <div v-html="captcha.data"></div> -->
 			</div>
 		</div>
 		<div class="bg"></div>
@@ -93,7 +95,7 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background-image: url(./bg.jpg);
+		background-image: url(~@/./assets/bg.jpg);
 		background-repeat: no-repeat;
 		background-size: 100% 100%;
 		background-position: center center;
@@ -124,7 +126,20 @@
 		padding: 0rem 0 1rem 0;
 		font-size: 1.5rem;
 		color: #ffffff;
-		text-align: center;
+		text-align: left;
+	}
+	#login-container .header span{
+		display: inline-block;
+		padding: 4px;
+		font-size: 1rem;
+		transform: scale(.8);
+		opacity: .7;
+	}
+	#login-container .header span.active{
+		font-size: 1.5rem;
+		transform: scale(1);
+		opacity: 1;
+
 	}
 	.input-item{
 		border-bottom: 1px solid rgba(255,255,255,.5);
