@@ -3,27 +3,49 @@
 		<div id="login-container">
 			<div class="input-wrap">
 				<div class="header">
-					<span class="active">登陆</span>
-					<span>注册</span>
+					<span @click="showLogin" :class="{active:isLogin}">登陆</span>
+					<span @click="hideLogin" :class="{active:!isLogin}">注册</span>
 				</div>
-				<div class="input-item">
-					<!-- <input type="text" name="account" placeholder="请输入账号" /> -->
-					<x-input type="text" title="账号：" placeholder="请输入账号" v-model="account"></x-input>
-				</div>
-				<div class="input-item">
-					<x-input title="密码：" v-model="pwd"></x-input>
-					<!-- <input type="password" name="account" placeholder="请输入账号" /> -->
-				</div>
-				<div class="input-item clearfix">
-					<div class="fl w55">
-						<x-input v-model="captchaText"></x-input>
+				<div v-if="isLogin" class="login-wrap">
+					<div class="input-item">
+						<x-input type="text" title="账号：" placeholder="请输入账号" v-model="account"></x-input>
 					</div>
-					<div class="fr w45">
-						<div @click="getCaptcha" v-html="captcha.data"></div>
+					<div class="input-item">
+						<x-input title="密码：" v-model="pwd"></x-input>
+					</div>
+					<div class="input-item clearfix">
+						<div class="fl w55">
+							<x-input v-model="captchaText"></x-input>
+						</div>
+						<div class="fr w45">
+							<div @click="getCaptcha" v-html="captcha.data"></div>
+						</div>
+					</div>
+					<div class="input-item">
+						<x-button :gradients="['#1D62F0', '#19D5FD']" @click.native="submit">登陆</x-button>
 					</div>
 				</div>
-				<div class="input-item">
-					<x-button :gradients="['#1D62F0', '#19D5FD']" @click.native="submit">登陆</x-button>
+				<div v-if="!isLogin" class="register-wrap">
+					<div class="input-item">
+						<x-input type="text" title="账号名：" placeholder="请输入账号名" v-model="registerForm.name"></x-input>
+					</div>
+					<div class="input-item">
+						<x-input type="text" title="账号：" placeholder="请输入账号" v-model="registerForm.account"></x-input>
+					</div>
+					<div class="input-item">
+						<x-input title="密码："  v-model="registerForm.pwd"></x-input>
+					</div>
+					<div class="input-item clearfix">
+						<div class="fl w55">
+							<x-input v-model="captchaText"></x-input>
+						</div>
+						<div class="fr w45">
+							<div @click="getCaptcha" v-html="captcha.data"></div>
+						</div>
+					</div>
+					<div class="input-item">
+						<x-button :gradients="['#1D62F0', '#19D5FD']" @click.native="register">注册</x-button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -33,6 +55,7 @@
 </template>
 <script>
 	import {XButton, XInput} from 'vux';
+	import { decipher } from '@/utils/crypto';
 	export default{
 		data(){
 			return {
@@ -40,18 +63,28 @@
 				gradients: ['#f60', '#294'],
 				account: '',
 				pwd: '',
-				captchaText: ''
+				captchaText: '',
+				isLogin: true,
+				registerForm: {
+					pwd: '',
+					account: '',
+					name: '',
+				},
+				loginForm: {
+					account: '',
+					pwd: ''
+				}
 			};
 		},
 		methods: {
 			submit(){
-				if(this.account.trim() == ''){
+				if(this.loginForm.account.trim() == ''){
 					this.$vux.toast.show({
 					 	text: '账号不能为空！',
 					 	type: 'warn',
 					 	position: 'middle'
 					});
-				}else if(this.pwd.trim() == ''){
+				}else if(this.loginForm.pwd.trim() == ''){
 					this.$vux.toast.show({
 					 	text: '密码为空！',
 					 	type: 'warn',
@@ -64,17 +97,67 @@
 						position: 'middle'
 					});
 				}
-				this.axios.post('/hair/user/login', {
-					account: this.account,
-					pwd: this.pwd
+				this.axios.post('/custom/login', {
+					account: this.loginForm.account,
+					pwd: this.loginForm.pwd
 				}).then((res) => {
 					console.log(res);
 				})
 
 			},
+			register(){
+				if(this.registerForm.name.trim() == ''){
+					this.$vux.toast.show({
+					 	text: '账号名不能为空！',
+					 	type: 'warn',
+					 	position: 'middle'
+					});
+				}else if(this.registerForm.account.trim() == ''){
+					this.$vux.toast.show({
+					 	text: '账号不能为空！',
+					 	type: 'warn',
+					 	position: 'middle'
+					});
+				}else if(this.registerForm.pwd.trim() == ''){
+					this.$vux.toast.show({
+					 	text: '密码为空！',
+					 	type: 'warn',
+					 	position: 'middle'
+					});
+				}else if(this.captchaText != this.captcha.text){
+					this.$vux.toast.show({
+						text: '验证码不正确！',
+						type: 'warn',
+						position: 'middle'
+					});
+				}
+				let params = Object.assign({}, this.registerForm);
+				params['pwd'] = decipher(params.pwd);
+				this.axios.post('/custom/register', params).then((res) => {
+					console.log(res);
+				});
+			},
 			getCaptcha(){
-				this.axios.get('/hair/login/captcha', {}).then((res) => {
+				this.axios.get('/login/captcha', {}).then((res) => {
 					this.$set(this,'captcha',res.data);
+				});
+			},
+			hideLogin(){
+				this.isLogin = false;
+				this.clearValue();
+			},
+			showLogin(){
+				this.isLogin = true;
+				this.clearValue();
+			},
+			clearValue(){
+				this.getCaptcha();
+				this.captchaText = '';
+				Object.keys(this.loginForm).forEach(key => {
+					this.$set(this.loginForm, key, '');
+				});
+				Object.keys(this.registerForm).forEach(key => {
+					this.$set(this.registerForm, key, '');
 				});
 			}
 		},

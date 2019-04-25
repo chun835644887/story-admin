@@ -44,7 +44,7 @@ module.exports = {
             // target: 'http://www.bercai.com:18080/zhiyu-app',
             target: 'http://localhost:3000/api',
             pathRewrite : {
-                '^/api': ''
+                '^/api': '/story'
             },
             changeOrigin : true
         },
