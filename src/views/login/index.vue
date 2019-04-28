@@ -8,10 +8,10 @@
 				</div>
 				<div v-if="isLogin" class="login-wrap">
 					<div class="input-item">
-						<x-input type="text" title="账号：" placeholder="请输入账号" v-model="account"></x-input>
+						<x-input type="text" title="账号：" placeholder="请输入账号" v-model="loginForm.account"></x-input>
 					</div>
 					<div class="input-item">
-						<x-input title="密码：" v-model="pwd"></x-input>
+						<x-input title="密码：" v-model="loginForm.pwd"></x-input>
 					</div>
 					<div class="input-item clearfix">
 						<div class="fl w55">
@@ -55,7 +55,8 @@
 </template>
 <script>
 	import {XButton, XInput} from 'vux';
-	import { decipher } from '@/utils/crypto';
+	import types from '@/store/types';
+	import { cipher, decipher } from '@/utils/crypto';
 	export default{
 		data(){
 			return {
@@ -99,11 +100,20 @@
 				}
 				this.axios.post('/custom/login', {
 					account: this.loginForm.account,
-					pwd: this.loginForm.pwd
+					pwd: cipher(this.loginForm.pwd)
 				}).then((res) => {
-					console.log(res);
-				})
-
+					if(res.data.success){
+						this.$store.commit(types.SET_USER, res.data.user);
+						this.$vux.toast.show({
+							text: '登陆成功！',
+							position: 'middle',
+							type: 'success'
+						});
+						this.$router.push({path: '/bookrack'});
+					}else{
+						this.getCaptcha();
+					}
+				});
 			},
 			register(){
 				if(this.registerForm.name.trim() == ''){
@@ -132,9 +142,12 @@
 					});
 				}
 				let params = Object.assign({}, this.registerForm);
-				params['pwd'] = decipher(params.pwd);
+				params['pwd'] = cipher(params.pwd);
 				this.axios.post('/custom/register', params).then((res) => {
-					console.log(res);
+					if(res.data.success){
+						this.isLogin = true;
+					}
+					this.getCaptcha();
 				});
 			},
 			getCaptcha(){

@@ -4,3 +4,27 @@
 /* 宽度 */
 .w45{width: 45%;}
 .w55{width: 55%;}
+.w100{width: 100%;}
+
+/* 高度 */
+.h100{height: 100%;}
+
+/* 头部 */
+.header-left-img{
+	width: 34px;
+	height: 34px;
+	margin-top: 5px;
+	background-image: url(~@/assets/default-user.jpg);
+	background-position: center;
+	background-size: 100% 100%;
+	border-radius: 50%;
+}
+.header-icon{
+	font-size: 1rem;
+	line-height: 44px;
+}
+.header-icon+.header-icon{
+	font-size: 1rem;
+	line-height: 44px;
+	margin-left: 1.5rem;
+}
