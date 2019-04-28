@@ -28,3 +28,9 @@
 	line-height: 44px;
 	margin-left: 1.5rem;
 }
+.main .content-animate{
+	transform: translate3d(256px, 0px, 0px) scale(0.8);
+}
+.main .content-animate{
+	transform: translate3d(256px, 0px, 0px) scale(0.8);
+}

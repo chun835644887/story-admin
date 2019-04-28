@@ -1,5 +1,7 @@
 const state = {
-	user: {},
+	user: {
+		
+	},
 	tabMenu: [{
 		label: '书架',
 		path: '/bookrack',
@@ -16,7 +18,8 @@ const state = {
 		label: '独家',
 		path: '/exclusive',
 		icon: ['fa', 'fa-diamond']
-	}]
+	}],
+	showSide: true
 };
 
 export default state;

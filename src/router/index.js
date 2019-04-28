@@ -12,10 +12,21 @@ export default new Router({
     	path: '/login',
     	name: 'login',
     	component: Login
-    }, {
-      path: '/bookrack',
-      name: 'bookrack',
-      component: BookRack
+    }, 
+    // {
+    //   path: '/bookrack',
+    //   name: 'bookrack',
+    //   component: BookRack
+    // }, 
+    {
+      path: '/story',
+      name: 'Main',
+      component: Main,
+      children: [{
+        path: 'bookrack',
+        name: 'bookrack',
+        component: BookRack
+      }]
     }
   ]
 })
