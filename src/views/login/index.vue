@@ -72,8 +72,8 @@
 					name: '',
 				},
 				loginForm: {
-					account: '',
-					pwd: ''
+					account: 'admin',
+					pwd: 'admin'
 				}
 			};
 		},
@@ -91,13 +91,14 @@
 					 	type: 'warn',
 					 	position: 'middle'
 					});
-				}else if(this.captchaText != this.captcha.text){
-					this.$vux.toast.show({
-						text: '验证码不正确！',
-						type: 'warn',
-						position: 'middle'
-					});
 				}
+				// else if(this.captchaText != this.captcha.text){
+				// 	this.$vux.toast.show({
+				// 		text: '验证码不正确！',
+				// 		type: 'warn',
+				// 		position: 'middle'
+				// 	});
+				// }
 				this.axios.post('/custom/login', {
 					account: this.loginForm.account,
 					pwd: cipher(this.loginForm.pwd)
@@ -109,7 +110,7 @@
 							position: 'middle',
 							type: 'success'
 						});
-						this.$router.push({path: '/bookrack'});
+						this.$router.push({path: '/story/bookrack'});
 					}else{
 						this.getCaptcha();
 					}

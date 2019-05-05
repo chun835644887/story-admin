@@ -1,5 +1,6 @@
 <template>
 	<div class="main">
+		<div class="side-bg"></div>
 		<s-side-bar></s-side-bar>
 		<router-view></router-view>
 	</div>
@@ -23,5 +24,13 @@
 	.main{
 		width: 100%;
 		height: 100%;
+	}
+	.side-bg{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background-image: url(~@/./assets/main1.jpg);
+		background-size: 100% 100%;
+		background-position: 0 0;
 	}
 </style>

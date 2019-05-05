@@ -1,5 +1,5 @@
 <template>
-	<div class="s-header">
+	<div class="s-header" :class="{'withB': enabledBorder}">
 		<div class="s-header-left">
 			<slot name="left">
 			
@@ -20,8 +20,17 @@
 
 <script>
 	export default{
+		props: {
+			enabledBorder: {
+				type: Boolean,
+				default: true
+			}
+		},
 		data(){
-			return {};
+			console.log(this.enabledBorder)
+			return {
+				opacity: 0
+			};
 		},
 		components: {
 			
@@ -32,6 +41,7 @@
 <style lang="less" scoped>
 	.s-header{
 		position: absolute;
+		z-index: 10;
 		display: -webkit-flex;
   		display: flex;
   		flex-wrap: nowrap;
@@ -42,7 +52,7 @@
 		left: 0;
 		right: 0;
 		overflow: height;
-		border-bottom: 1px solid rgba(33,33,33,.1);
+		background-color:rgba(255,255,255,0);
 		.s-header-left{
 			height: 44px;
 			width: auto;
@@ -58,5 +68,8 @@
 			padding-right: 1rem;
 			width: auto;
 		}
+	}
+	.withB{
+		border-bottom: 1px solid rgba(33,33,33,.1);
 	}
 </style>

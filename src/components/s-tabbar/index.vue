@@ -28,6 +28,8 @@
 		methods: {
 			changeTab(menu,index){
 				this.selected = index;
+				console.log(menu);
+				this.$router.push(`/story${menu.path}`);
 			},
 			getTabIconClass(menu){
 				let obj = {};
@@ -42,7 +44,7 @@
 
 <style lang="less" scoped>
 	#s-tabbar{
-		position: absolute;
+		position: fixed;
 		display: flex;
 		flex-wrap: nowrap;
 		justify-content: space-between;
@@ -52,6 +54,7 @@
 		padding-top: 4px;
 		border-top: 1px solid rgba(33,33,33,.1);
 		overflow: hidden;
+		background: rgba(255,255,255, .9);
 		.s-tabbar-item{
 			flex: 1;
 			cursor: pointer;

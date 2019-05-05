@@ -8,6 +8,14 @@
 
 /* 高度 */
 .h100{height: 100%;}
+.mh100{ min-height: 100%; }
+
+/* 白色背景 */
+.bgW{ background: #fff; }
+
+.pr{position: relative;}
+.pf{ position: fixed; }
+.pa{ position: absolute; }
 
 /* 头部 */
 .header-left-img{
@@ -29,8 +37,88 @@
 	margin-left: 1.5rem;
 }
 .main .content-animate{
-	transform: translate3d(256px, 0px, 0px) scale(0.8);
+	transform: translate3d(75%, 0px, 0px) scale(0.8);
 }
 .main .content-animate{
-	transform: translate3d(256px, 0px, 0px) scale(0.8);
+	transform: translate3d(75%, 0px, 0px) scale(0.8);
 }
+/* 波浪动画 */
+@keyframes move_wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1)
+    }
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.55)
+    }
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1)
+    }
+}
+.waveWrapper {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: -1px;
+    margin: auto;
+}
+.waveWrapperInner {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    bottom: -1px;
+    /*background-image: linear-gradient(to top, #03070A 0%, #384F6F 100%);*/
+}
+.bgTop {
+    z-index: 15;
+    opacity: 0.5;
+}
+.bgTop>div{
+	background-image: url(~@/./assets/wave-top.png);
+}
+.bgMiddle {
+    z-index: 10;
+    opacity: 0.75;
+}
+.bgMiddle>div{
+	background-image: url(~@/./assets/wave-mid.png);
+}
+.bgBottom {
+    z-index: 5;
+}
+.bgBottom>div{
+	background-image: url(~@/./assets/wave-bot.png);
+}
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
+}
+.waveTop {
+    background-size: 50% 60%;
+}
+.waveAnimation .waveTop {
+  animation: move-wave 3s;
+   -webkit-animation: move-wave 3s;
+   -webkit-animation-delay: 1s;
+   animation-delay: 1s;
+}
+.waveMiddle {
+    background-size: 50% 50%;
+}
+.waveAnimation .waveMiddle {
+    animation: move_wave 10s linear infinite;
+}
+.waveBottom {
+    background-size: 50% 40%;
+}
+.waveAnimation .waveBottom {
+    animation: move_wave 15s linear infinite;
+}
+/*波浪特效结束*/
