@@ -27,7 +27,6 @@
 			}
 		},
 		data(){
-			console.log(this.enabledBorder)
 			return {
 				opacity: 0
 			};

@@ -87,7 +87,7 @@
 
 <style lang="less" scoped>
 	.s-side-bar{
-		position: fixed;
+		position: absolute;
 		top: 0;
 		left: 0;
 		width: 80%;

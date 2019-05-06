@@ -1,5 +1,5 @@
 <template>
-	<div class="layout ">
+	<div class="layout " :style="layoutStyle">
 		<slot name="content"></slot>
 		<s-tabbar></s-tabbar>
 	</div>
@@ -20,6 +20,10 @@
 				default(){
 					return 46;
 				}
+			},
+			layoutStyle: {
+				type: Object,
+				default: {}
 			}
 		},
 		data(){

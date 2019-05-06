@@ -16,5 +16,6 @@ html,body,#app {
   margin: 0;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 </style>

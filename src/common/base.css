@@ -17,6 +17,17 @@
 .pf{ position: fixed; }
 .pa{ position: absolute; }
 
+/* margin */
+.mt6{ margin-top: 6px; }
+.mb6{ margin-bottom: 6px; }
+/* margin */
+
+/*  */
+.text-nowrap{
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 /* 头部 */
 .header-left-img{
 	width: 34px;
@@ -42,6 +53,15 @@
 .main .content-animate{
 	transform: translate3d(75%, 0px, 0px) scale(0.8);
 }
+
+/*分割线*/
+.seperator {
+    background-color: #F0F0F2;
+    width: 100%;
+    height: .5em;
+}
+/* 分割线 */
+
 /* 波浪动画 */
 @keyframes move_wave {
     0% {
@@ -122,3 +142,65 @@
     animation: move_wave 15s linear infinite;
 }
 /*波浪特效结束*/
+
+/* tab页面动画 */
+@-webkit-keyframes slideInLeft {
+  from {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@-webkit-keyframes slideInRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+.side-enter-active{
+  -webkit-animation: slideInRight 1s;
+  animation: slideInRight 1s;
+}
+.side-enter{
+  -webkit-animation: slideInLeft 1s;
+  animation: slideInLeft 1s;
+}
+/* tab页面动画结束 */

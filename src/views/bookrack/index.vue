@@ -169,6 +169,8 @@
 <style lang="less" scoped>
 	#book-rack{
 		position: relative;
+		height: 100%;
+		overflow: scroll;
 		background: #fff;
 		transition: transform 350ms cubic-bezier(.165,.84,.44,1);
 		.page-bookrack-content{
@@ -202,7 +204,7 @@
 					.story-img{
 						width: 90px;
 						height: 120px;
-						background-image: url(~@/./assets/story_default.jpg);
+						background-image: url(~@/./assets/1.jpg);
 						background-size: 100% 100%;
 					}
 					.story-info{
@@ -261,7 +263,7 @@
 					width: 90px;
 					height: 160px;
 					.collection-story-img{
-						background-image: url(~@/./assets/story_default.jpg);
+						background-image: url(~@/./assets/1.jpg);
 						background-position: 0 0;
 						background-size: 100% 100%;
 						background-repeat: no-repeat;
