@@ -103,6 +103,7 @@
 					account: this.loginForm.account,
 					pwd: cipher(this.loginForm.pwd)
 				}).then((res) => {
+					console.log(res);
 					if(res.data.success){
 						this.$store.commit(types.SET_USER, res.data.user);
 						this.$vux.toast.show({

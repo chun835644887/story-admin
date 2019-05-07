@@ -51,14 +51,130 @@
 												<div class="left-pre">精品汇聚</div>
 											</div>
 											<div class="recommend-header-right fr">
-												<div class="right-suf">换一换<span style="padding-left: 1em;" class="fa fa-refresh"></span></div>
+												<div class="right-suf" style="padding-right: 1em;">换一换<span style="padding-left: 1em;" class="fa fa-refresh"></span></div>
 											</div>
 										</div>
-										<div class="recommend-content">
+										<div class="recommend-content clearfix">
 											<template v-for="item in recommendStory">
 												<div class="recommend-story-item">
 													<div class="recommend-story-img">
-														<img src="../../assets/story_default.jpg" alt="">
+														<img src="../../assets/1.jpg" alt="">
+													</div>
+													<div class="recommend-story-name text-nowrap">{{item.name}}</div>
+													<div class="recommend-story-author text-nowrap">{{item.author}}</div>
+												</div>
+											</template>
+										</div>
+									</div>
+								</template>
+								<template v-if="bestStory.length">
+									<div class="seperator mt6 mb6"></div>
+									<div class="recommend-story-container">
+										<div class="recommend-header clearfix">
+											<div class="recommend-header-left fl">
+												<div class="left-pre">最好看的书</div>
+											</div>
+											<div class="recommend-header-right fr">
+												<div class="right-suf" style="padding-right: 1em;">换一换<span style="padding-left: 1em;" class="fa fa-refresh"></span></div>
+											</div>
+										</div>
+										<div class="recommend-content clearfix">
+											<template v-for="item in bestStory">
+												<div class="recommend-story-item">
+													<div class="recommend-story-img">
+														<img src="../../assets/1.jpg" alt="">
+													</div>
+													<div class="recommend-story-name text-nowrap">{{item.name}}</div>
+													<div class="recommend-story-author text-nowrap">{{item.author}}</div>
+												</div>
+											</template>
+										</div>
+									</div>
+								</template>
+								<div class="seperator mt6 mb6"></div>
+								<div class="story-block clearfix">
+									<div class="story-block-item">
+										<div class="block-info">
+											<div class="block-name">听书专区</div>
+											<div class="block-des">聆听悦读</div>
+										</div>
+										<div class="block-info-icon" :style="{backgroundImage:`url(${img})`}"></div>
+									</div>
+									<div class="story-block-item">
+										<div class="block-info">
+											<div class="block-name">轻小说</div>
+											<div class="block-des">突破次元壁</div>
+										</div>
+										<div class="block-info-icon" :style="{backgroundPosition:'0px -43px',backgroundImage:`url(${img})`}"></div>
+									</div>
+									<div class="story-block-item">
+										<div class="block-info">
+											<div class="block-name">男生最爱</div>
+											<div class="block-des">热血较亮</div>
+										</div>
+										<div class="block-info-icon" :style="{backgroundPosition:'0px -86px',backgroundImage:`url(${img})`}"></div>
+									</div>
+									<div class="story-block-item">
+										<div class="block-info">
+											<div class="block-name">女生最爱</div>
+											<div class="block-des">爱恨纠缠</div>
+										</div>
+										<div class="block-info-icon" :style="{backgroundPosition:'0px -129px',backgroundImage:`url(${img})`}"></div>
+									</div>
+								</div>
+								<!-- 点击上十万 -->
+								<div class="seperator mt6 mb6"></div>
+								<div class="story-touch-container">
+									<div class="story-touch-header clearfix">
+											<div class="story-touch-header-left fl">
+												<div class="left-pre">点击上十万的好书</div>
+											</div>
+											<div class="story-touch-header-right fr">
+												<div class="right-suf" style="padding-right: 1em;">换一换<span style="padding-left: 1em;" class="fa fa-refresh"></span></div>
+											</div>
+										</div>
+									<div class="story-touch-content clearfix">
+										<template v-for="(item, index) in sortTouchStory">
+											<div class="story-touch-top clearfix" v-if="index==0">
+												<div class="story-touch-img fl">
+													<img src="../../assets/1.jpg" alt="">
+												</div>
+												<div class="stour-touch-info fr">
+													<div class="story-touch-name text-nowrap">{{item.name}}</div>
+													<div class="story-touch-des">{{item.des}}</div>
+													<div class="story-touch-count">{{item.touchCount}}</div>
+												</div>
+											</div>
+											<div class="story-touch-item clearfix" v-if="index!=0">
+												<div class="story-touch-img fl">
+													<img src="../../assets/1.jpg" alt="">
+												</div>
+												<div class="stour-touch-info fr">
+													<div class="story-touch-name text-nowrap">{{item.name}}</div>
+													<div class="story-touch-count">{{item.touchCount}}</div>
+												</div>
+											</div>
+										</template>
+									</div>
+								</div>
+
+								<!-- 大家都在搜索 -->
+								<template v-if="hotStory.length">
+									<div class="seperator mt6 mb6"></div>
+									<div class="recommend-story-container">
+										<div class="recommend-header clearfix">
+											<div class="recommend-header-left fl">
+												<div class="left-pre">大家都在搜</div>
+											</div>
+											<div class="recommend-header-right fr">
+												<div class="right-suf" style="padding-right: 1em;">换一换<span style="padding-left: 1em;" class="fa fa-refresh"></span></div>
+											</div>
+										</div>
+										<div class="recommend-content clearfix">
+											<template v-for="item in hotStory">
+												<div class="recommend-story-item">
+													<div class="recommend-story-img">
+														<img src="../../assets/1.jpg" alt="">
 													</div>
 													<div class="recommend-story-name text-nowrap">{{item.name}}</div>
 													<div class="recommend-story-author text-nowrap">{{item.author}}</div>
@@ -69,7 +185,6 @@
 								</template>
 							</div>
 					</transition>
-
 					<transition name="side">
 						<div v-show="tabIndex===1" class="high-quality" >
 							aa
@@ -84,7 +199,7 @@
 
 					<transition name="side">
 						<div v-show="tabIndex===3" class="high-quality" >
-								dd
+								
 							</div>
 					</transition>
 				</div>
@@ -97,6 +212,7 @@
 	import SHeader from '@/components/s-header';
 	import Layout from '@/components/layout';
 	import { Tab, TabItem, Swiper, SwiperItem } from 'vux';
+	import imgBase64 from '@/common/img-base64';
 	const simpleslider = require('simple-slider');
 	export default{
 		data(){
@@ -105,7 +221,8 @@
 				tabIndex: 0,
 				swiperIndex: 100,
 				layoutStyle: {
-					minHeight: '100%'
+					minHeight: '100%',
+					paddingBottom: '60px'
 				},
 				types: [{
 					name: '精选',
@@ -175,6 +292,104 @@
 					author: '消停'
 				}],
 				slmpleSlider: null,
+				bestStory: [{
+					name: '犯人修事传',
+					img: '',
+					author: '消停'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停'
+				}],
+				hotStory: [{
+					name: '犯人修事传',
+					img: '',
+					author: '消停'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停'
+				}],
+				touchStory: [{
+					name: '犯人修事传',
+					img: '',
+					author: '消停',
+					des: '垃圾小说',
+					touchCount: '20000'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停',
+					des: '垃圾小说',
+					touchCount: '23000'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停',
+					des: '垃圾小说',
+					touchCount: '69000'
+				},{
+					name: '犯人修事传',
+					img: '',
+					des: '垃圾小说',
+					author: '消停',
+					touchCount: '223000'
+				},{
+					name: '犯人修事传',
+					img: '',
+					author: '消停',
+					des: '垃圾小士大夫士大夫asfsdf大哥撒旦发射点发射点发射点犯得上犯得上大师傅士大夫大师傅地方说',
+					touchCount: '920000'
+				}],
+				img: imgBase64.typeIcon,
 				siderId: Date.now()
 			};
 		},
@@ -187,7 +402,11 @@
 			SwiperItem
 		},
 		computed: {
-			
+			sortTouchStory(){
+				return this.touchStory.sort((a, b) => {
+					return b.touchCount - a.touchCount;
+				});
+			}
 		},
 		methods: {
 			changeSwiper(index){
@@ -237,12 +456,6 @@
 			width: 2em;
 			font-size: 1em;
 		}
-		.vux-swiper{
-			height: auto !important;
-		}
-		.vux-slider{
-			height: auto !important;
-		}
 		.recommend-story-container{
 			.recommend-header{
 				margin-top: .8em;
@@ -287,8 +500,119 @@
 
 			}
 		}
-		.high-quality{
+		.story-touch-container{
+			.story-touch-header{
+				margin-top: .8em;
+				.story-touch-header-left{
+					position: relative;
+					padding-left: 1em;
+					font-size: 1em;
+				}
+				.story-touch-header-left:after{
+					content: '';
+				    width: .2em;
+				    height: .9em;
+				    display: inline-block;
+				    position: absolute;
+				    top: .3em;
+				    left: 0;
+				}
+				.story-touch-header-right{
+					font-size: 1em;
+					
+				}
+			}
+			.story-touch-content{
+				padding-left: 1em;
+				padding-right: 1em;
+				.story-touch-top{
+					.story-touch-img{
+						width: 25%;
+						img{
+							width: 100%;
+						}
+					}
+					.stour-touch-info{
+						width: 65%;
+						margin-left: 10%;
+						.story-touch-des{
+							margin-top: .2em;
+							height: 2.4em;
+							line-height: 1.2em;
+							text-overflow: -o-ellipsis-lastline;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							display: -webkit-box;
+							-webkit-line-clamp: 2;
+							line-clamp: 2;
+							-webkit-box-orient: vertical;
+						}
+						.story-touch-name{
+							margin-top: .2em;
+						}
+						.story-touch-count{
+							margin-top: .2em;
+						}
+					}
+				}
+				.story-touch-item{
+					float: left;
+					width: 50%;
+					.story-touch-img{
+						width: 25%;
+						img{
+							width: 100%;
+						}
+					}
+					.stour-touch-info{
+						width: 65%;
+						margin-left: 10%;
+						.story-touch-name{
+							margin-top: .2em;
+						}
+						.story-touch-count{
+							margin-top: .2em;
+							color: #999;
+						}
+					}
+				}
+			}
+		}
+		.story-block{
 
+			.story-block-item{
+				width: 50%;
+				float: left;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				.block-info{
+					margin-top: 1em;
+					margin-bottom: 1em;
+					margin-left: 1em;
+					margin-right: 1em;
+					.block-name{
+						font-size: 1.2em;
+					}
+					.block-des{
+						font-size: .8em;
+						color: #999;
+					}
+				}
+				.block-info-icon{
+					width: 2em;
+					height: 2em;
+					margin-top: 1em;
+					margin-bottom: 1em;
+					margin-left: 1em;
+					margin-right: 1em;
+					background-position: 0 0;
+					background-size: 100%;
+					background-repeat: no-repeat;
+				}
+			}
+		}
+		.high-quality{
 			.type-list-container{
 				display: flex;
 				justify-content: space-between;
