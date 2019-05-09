@@ -73,7 +73,9 @@
 						</div>
 						<div v-if="collection.length" class="collection-container clearfix">
 							<div class="collection-story-item fl" v-for="col in collection">
-								<div class="collection-story-img"></div>
+								<div class="collection-story-img">
+									<img src="../../assets/1.jpg" width="100%" alt="">
+								</div>
 								<div class="collection-story-name">{{col.name}}</div>
 							</div>
 						</div>
@@ -153,7 +155,7 @@
 				this.$store.commit(types.SET_SIDE_BAR_FLAG, !this.$store.getters.getShowSide);
 			},
 			getUser(){
-				this.axios.get('/custom/all', {}).then((res) => {
+				this.axios.get('/custom/all?timestamp=' + Date.now(), {}).then((res) => {
 					console.log(res);
 				});
 			}
@@ -177,7 +179,7 @@
 			overflow-y: scroll;
 			background-image: url(~@/./assets/main1.jpg);
 			background-repeat: no-repeat;
-			background-size: 375px 235px;
+			background-size: 100% 235px;
 			padding-top: 46px;
 			.bookrack-header{
 				position: relative;
@@ -260,15 +262,16 @@
 				padding-left: 1.5em;
 				padding-right: 1.5em;
 				.collection-story-item{
-					width: 90px;
+					width: 30%;
 					height: 160px;
+					height: auto;
+					margin-left: 1.5%;
+					margin-right: 1.5%;;
 					.collection-story-img{
-						background-image: url(~@/./assets/1.jpg);
 						background-position: 0 0;
 						background-size: 100% 100%;
 						background-repeat: no-repeat;
-						height: 130px;
-						width: 90px;
+						height: auto;
 					}
 					.collection-story-name{
 						text-align: center;
@@ -276,10 +279,6 @@
 						 text-overflow:ellipsis;
 						 overflow:hidden;
 					}
-				}
-				.collection-story-item:nth-child(3n-1){
-					margin-left: 1.5em;
-					margin-right: 1.5em;
 				}
 			}
 		}

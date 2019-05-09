@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { baseURL,timeout } from '@/config';
+import router from '@/router';
 
 const request = axios.create({
 	baseURL,
@@ -7,7 +8,9 @@ const request = axios.create({
 	headers: {
 	  	"X-Requested-With" : "XMLHttpRequest",
 		"RedirectType" : "None",
-		"IsMobile" : true
+		"IsMobile" : true,
+		Refresh: 3,
+		url: 'http://localhost:8080/#'
   },
   withCredentials: true
 });
@@ -26,6 +29,10 @@ request.interceptors.response.use((respone) => {
 	return respone
 }, (error) => {
 	console.error(error);
+	/*session过期跳转至登陆页面*/
+	if(error.response.status === 302){
+		router.push('/login');
+	}
 	return Promise.reject(error);
 })
 
